@@ -1,36 +1,36 @@
-name: Crawl Accounts
+name: Crawl Accounts名称: 爬取账户
 
 on:
   schedule:
     # 每 15 分钟（UTC）
-    - cron: '*/15 * * * *'
+    - cron: '*/30 * * * *'
   workflow_dispatch:
 
 jobs:
-  crawl:
+  crawl: 爬取:
     runs-on: ubuntu-latest
     timeout-minutes: 5
 
-    permissions:
-      contents: write
+    permissions:权限:
+      contents: write内容: 写入
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+    steps:步骤:
+      - name: Checkout名称: 检出
+        uses: actions/checkout@v4        使用: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v5        使用: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: '3.11'          Python 版本: '3.11'
 
-      - name: Install dependencies
-        run: pip install -r requirements.txt
+      - name: Install dependencies名称: 安装依赖项
+        run: pip install -r requirements.txt        运行: pip install -r requirements.txt
 
       - name: Run crawler
-        run: python crawler.py
+        run: python crawler.py        运行: python crawler.py
 
-      - name: Commit & push if changed
-        run: |
+      - name: Commit & push if changed名称: 若已更改则提交并推送
+        run: |        运行: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add api_data.json
